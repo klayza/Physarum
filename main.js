@@ -81,19 +81,16 @@ map.update(1);
 /*
   Notes:
   
-  6/25 - I have done some decent work on 
-  drone and galaxy interactions. Now when they
-  move into a galaxy their values change and
-  the galaxy will be uncovered on next render.
+  7/11 - I have implemented the trajectory after
+  learning a little bit about radians. so now they
+  can keep moving if you update them. I still need to
+  calculate the distance from the speed because I think
+  it would be cool to vary speeds and see what changes.
 
-  Next up to do is the fun stuff, math. I will 
-  need to detemine the stopindicator stuff taking
-  into account the signal range.
+  next to do is to render drones, calc distance, 
+  and fix stop indicator calc.
 
-  Also long term note here, I think it would be 
-  cool to have the drone's estimates of the optimal 
-  path through dotted lines and watch how they 
-  change over time with more drone coverage.
+
 
 
   ## High level overview
@@ -110,9 +107,11 @@ map.update(1);
   start manufacturing more drones to send out
   6. Once the founder drone is done, it continues
   it's voyage in a new direction
-  7. 
-
-
+  7. Another stray drone comes across a colonized galaxy!
+  8. It exchanges findings with the beacon, and adjusts
+  it's strategy.
+  9. Once any hitlist contains all present galaxies, 
+  the game is over!
 
 */
 

@@ -41,7 +41,6 @@ class Base {
       const dy = startY - g.y;
       const objectAngle = Math.atan2(dy, dx);
       const distance = Math.sqrt(dx * dx + dy * dy);
-      console.log(distance)
       if (Math.abs(radians - objectAngle) < 1) {
         if (distance < closestDistance) {
           closestObject = g;
@@ -90,9 +89,10 @@ class Base {
 
   launchAllDrones() {
     // Launch the drones from earth
+    const initialDroneCount = map.home.drones.length
     for (let i = map.home.drones.length - 1; i >= 0; i--) {
       let drone = map.home.drones[i];
-      const launch_angle = (360 / map.home.drones.length) * i + 1;
+      const launch_angle = (360 / initialDroneCount) * i + 1;
       map.home.launchDrone(drone, launch_angle);
     }
   }
@@ -121,7 +121,7 @@ class Drone {
     this.id = "";
     this.upcomingStopIndicator = 0;
     // stop indicator is a game variable so the drone knows when it has 
-    // reached a galaxy within it's range.
+    // | reached a galaxy within it's range.
     this.upcomingStopId = undefined;
     this.thisTripTraveled = 0;
     // for tracking lightyears (lr) inbetween galaxies. resets after entering galaxy
@@ -160,8 +160,18 @@ class Drone {
   update() {
     // const canEnterGalaxy = this.thisTripTraveled >= this.upcomingStopIndicator;
     const canEnterGalaxy = false; //temp for now
+    
+    // If the drone can enter a nearby galaxy, do so.
     if (canEnterGalaxy) {
       this.enterGalaxy(this.upcomingStopId);
+    }
+    // Otherwise, keep going deeper into space.
+    else {
+      const d = 5
+      console.log(this.x)
+      this.x =  this.x + d * Math.cos((Math.PI / 180) * this.angle)
+      this.y =  this.y + d * Math.sin((Math.PI / 180) * this.angle)
+      console.log(this.x)
     }
 
     // thoughts on the mechanism to interact with galaixes here:
@@ -294,7 +304,7 @@ class Map {
     const startY = drone.y;
 
     // Line length
-    const length = 200;
+    const length = 600;
 
     // Convert 180 degrees to radians
     const angleInRadians = drone.angle * (Math.PI / 180);
@@ -304,8 +314,10 @@ class Map {
     const endY = startY + length * Math.sin(angleInRadians);
     console.log(startX, startY, endX, endY)
     // Draw the line
-    ctx.strokeStyle = '#FFFFFF';
-    ctx.lineWidth = 2;
+    // ctx.strokeStyle = '#FFFFFF';
+    ctx.strokeStyle = 'yellow';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 10])
     ctx.beginPath();
     ctx.moveTo(startX, startY); // Move to start point
     ctx.lineTo(endX, endY); // Draw line to end point
@@ -322,7 +334,7 @@ class Map {
     });
   }
 
-  update(steps) {
+  update(steps=1) {
     for (let i = 0; i < steps; i++) {
       this.updateAll();
     }
