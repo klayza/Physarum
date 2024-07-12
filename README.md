@@ -1,10 +1,4 @@
 <style>
-body {
-  font-family: Consolas, monospace;
-  color: #00ff00;
-  background-color: #000000;
-}
-</style>
 <div align="center">
 
 # physarum: autonomous space colonization
