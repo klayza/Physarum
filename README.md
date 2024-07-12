@@ -1,10 +1,3 @@
-<style>
-body {
-  font-family: Consolas, monospace;
-  color: #00ff00;
-  background-color: #000000;
-}
-</style>
 <div align="center">
 
 # physarum: autonomous space colonization
@@ -31,7 +24,7 @@ body {
 - drones act as virtual slime mold, exploring and colonizing galaxies
 
 ## run
-1. `git clone https://github.com/klayza/physarum`
+1. `git clone https://github.com/klayza/Physarum`
 2. open `index.html` in browser
 3. watch the fleet grow... or perish
 
