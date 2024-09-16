@@ -273,8 +273,14 @@ class Map {
     ctx.fillText("🌌", galaxy.x, galaxy.y)
   }
 
+  renderDrone(drone) {
+    ctx.fillStyle = "white";
+    ctx.fillText("🚀", drone.x, drone.y)
+  }
+
   renderAll() {
     this.galaxies.forEach(galaxy => this.renderGalaxy(galaxy));
+    this.space.drones.forEach(drone => this.renderDrone(drone));
   }
 
   renderBackground() {
